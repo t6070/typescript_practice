@@ -1,5 +1,3 @@
-import { boolean, number } from "yargs";
-
 export class Card {
     num:number;
     suit: string;
