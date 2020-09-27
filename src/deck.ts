@@ -1,7 +1,6 @@
 import {Card} from './cards'
 export class Deck {
     cards: Card[] = new Array;
-
     constructor() {
         //カードのマークを定義
         const suits:any = ["spade","clover","heart","diamond"];
