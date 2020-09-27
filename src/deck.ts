@@ -17,20 +17,6 @@ export class Deck {
 const deck:Deck[] = [new Deck];
 const cards = deck[0]["cards"];
 
-//ゲームの準備
-export function gamePreparation():{}{ 
-    //表向きのカードと裏向きのカードを用意
-    let faceupCard:any = null;
-    let facedownCard:any = null;
-    //表向きのカードをセット
-    faceupCard = dealCard();
-    //裏向きのカードをセット
-    facedownCard = dealCard();
-    //2枚のカードを1ペアとする
-    const cardPair: {"faceup":number, "facedown":number} = {"faceup": faceupCard["num"], "facedown": facedownCard["num"]};
-    return cardPair;
-}
-
 //デッキをシャッフルする
 function deckShuffle() {
     for(var i = cards.length - 1; i > 0; i--){
@@ -42,7 +28,7 @@ function deckShuffle() {
 }
 
 //カードを1枚取り出す
-function dealCard():{} {
+export function dealCard():Card {
     deckShuffle();
     const card = cards[0];
     cards.splice(0, 1);
