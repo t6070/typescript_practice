@@ -14,15 +14,37 @@ export class Deck {
     }
 }
 
-//デッキからランダムにカードを5枚配る
-export function dealCards(){
-    const deck:Deck[] = [new Deck];
-    const cards = deck[0]["cards"];
-    const playerCards:unknown[] = [];
-    for(let i = 1; i < 6; i++){
-        const randomNum:number = Math.floor(Math.random() * (53 - 0) + 0);
-        playerCards.push(cards[randomNum]);
-        cards.splice(randomNum, 1);
+const deck:Deck[] = [new Deck];
+const cards = deck[0]["cards"];
+
+//ゲームの準備
+export function gamePreparation():{}{ 
+    //表向きのカードと裏向きのカードを用意
+    let faceupCard:any = null;
+    let facedownCard:any = null;
+    //表向きのカードをセット
+    faceupCard = dealCard();
+    //裏向きのカードをセット
+    facedownCard = dealCard();
+    //2枚のカードを1ペアとする
+    const cardPair: {"faceup":number, "facedown":number} = {"faceup": faceupCard["num"], "facedown": facedownCard["num"]};
+    return cardPair;
+}
+
+//デッキをシャッフルする
+function deckShuffle() {
+    for(var i = cards.length - 1; i > 0; i--){
+        var r = Math.floor(Math.random() * (i + 1));
+        var tmp = cards[i];
+        cards[i] = cards[r];
+        cards[r] = tmp;
     }
-    console.log(playerCards);
+}
+
+//カードを1枚取り出す
+function dealCard():{} {
+    deckShuffle();
+    const card = cards[0];
+    cards.splice(0, 1);
+    return card;
 }

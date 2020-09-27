@@ -1,4 +1,7 @@
-import {Deck} from './deck'
 import * as deck from './deck';
+import * as card from './cards';
 
-deck.dealCards();
+//ゲームの準備
+const cardPair:{} = deck.gamePreparation();
+//勝敗の判定
+card.getCardJudgment(cardPair);
